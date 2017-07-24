@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
@@ -16,6 +17,7 @@ const todos = require('./routes/todos');
 
 
 // setup some middleware
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 

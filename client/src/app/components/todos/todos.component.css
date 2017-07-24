@@ -8,3 +8,11 @@
 .btn.delete {
     border-radius: 0 8px 8px 0;
 }
+
+.btn-sm {
+    padding: 11px 0;
+}
+
+article {
+    margin-bottom: 3px;
+}
