@@ -1,0 +1,10 @@
+.btn {
+    border-radius: 8px;
+}
+
+.btn.edit {
+    border-radius: 8px 0 0 8px;
+}
+.btn.delete {
+    border-radius: 0 8px 8px 0;
+}
