@@ -36,7 +36,7 @@ router.post('/todo', (req, res) => {
             "error" : "Invalid Data"
         });
     } else {
-        db.save(todo, (err, result) => {
+        db.todos.save(todo, (err, result) => {
             if (err) {
                 res.send(err);
             } else {

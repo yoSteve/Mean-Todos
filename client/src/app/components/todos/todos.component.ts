@@ -17,7 +17,63 @@ export class TodosComponent implements OnInit {
     this.todoService.getTodos()
       .subscribe( (todos) => {
         this.todos = todos;
+        console.log(todos);
       });
   }
+
+  addTodo(event, todoText) {
+    let result;
+    let newTodo = {
+      _id: '',
+      text: todoText.value,
+      isCompleted: false
+    };
+    result = this.todoService.saveTodo(newTodo);
+    result.subscribe( () => {
+      this.todos.push(newTodo);
+      todoText.value = '';
+    });
+  }
+
+  setEditState(todo, state) {
+    if (state) {
+      todo.isEditMode = state;
+    } else {
+      delete todo.isEditMode;
+    }
+  }
+
+  updateStatus(todo) {
+    let _todo = {
+      _id: todo._id,
+      text: todo.text,
+      isCompleted: !todo.isCompleted
+    }
+    this.todoService.updateTodo(_todo)
+      .subscribe( (data) => {
+        todo.isCompleted = !todo.isCompleted;
+      });
+  }
+
+  updateTodoText(event, todo) {
+    // if keypress event is the 'Enter' key
+    if(event.which === 13) {
+      let _todo = {
+        _id: todo._id,
+        text: event.target.value,
+        isCompleted: todo.isCompleted
+      };
+      this.todoService.updateTodo(_todo)
+        .subscribe((data) => {
+          todo.text = _todo.text;
+          this.setEditState(todo, false);
+        })
+    }
+  }
+
+  // deleteTodo(todo) {
+  //   this.todoService.deleteTodo(todo)
+  //     .subscribe((data) => this.todos = data);
+  // }
 
 }
