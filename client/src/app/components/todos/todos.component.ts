@@ -71,9 +71,19 @@ export class TodosComponent implements OnInit {
     }
   }
 
-  // deleteTodo(todo) {
-  //   this.todoService.deleteTodo(todo)
-  //     .subscribe((data) => this.todos = data);
-  // }
+  deleteTodo(todo) {
+    let todos = this.todos;
+    let targetId = todo._id;
+    this.todoService.deleteTodo(targetId)
+      .subscribe((data) => {
+        if (data.n == 1) {
+          todos.forEach((todo, index) => {
+            if (todo._id == targetId) {
+              todos.splice(index, 1);
+            }
+          });
+        }
+      });
+  }
 
 }

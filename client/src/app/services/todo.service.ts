@@ -29,11 +29,11 @@ export class TodoService {
       .map( (res) => res.json() );
   }
 
-  // deleteTodo(todo:Todo) {
-  //   let headers = new Headers();
-  //   headers.append('Content-Type', 'application/json');
-  //   return this.http.delete(`${this.apiUrl}/todo/${todo._id}`, {headers: headers})
-  //     .map( (res) => res.json() );
-  // }
+  deleteTodo(targetId) {
+    // let headers = new Headers();
+    // headers.append('Content-Type', 'application/json');
+    return this.http.delete(`${this.apiUrl}/todo/${targetId}`)
+      .map( (res) => res.json() );
+  }
 
 } // end class
